@@ -12,6 +12,27 @@
       <li th:text="'Song length - ' + ${albumData.length}"></li>
   </ul>
 
+  <h3>Songs</h3>
+
+  <ul th:each=" song : ${albumData.songsInAlbum}">
+      <li th:text=" 'Song name - ' + ${song.title}"></li>
+      <li th:text=" 'Song Length - ' + ${song.length}"></li>
+      <li th:text=" 'Track Number - ' + ${song.trackNumber}"></li>
+      <li th:text=" 'Part of Album - ' + ${song.album}"></li>
+  </ul>
+
+  <form action="/songs" method="post">
+      <fieldset>
+          <label>Song Title</label>
+          <input type="text" name="title">
+          <label>Song Length</label>
+          <input type="text" name="artist">
+          <label>Track Number</label>
+          <input type="text" name="count">
+          <input type="hidden" name="album" th:value="&{albumData.title}">
+          <input type="submit"></input>
+      </fieldset>
+  </form>
 
 <form action="/album" method="post">
     <fieldset>
@@ -26,6 +47,8 @@
         <input type="submit"></input>
     </fieldset>
 </form>
+
+
 
 </body>
 </html>

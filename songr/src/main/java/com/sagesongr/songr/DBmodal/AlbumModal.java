@@ -1,9 +1,7 @@
 package com.sagesongr.songr.DBmodal;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class AlbumModal {
@@ -12,6 +10,9 @@ public class AlbumModal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
+    @OneToMany(mappedBy = "album")
+    List<Song> songsInAlbum;
+
     String title;
     String artist;
     int songCount;
@@ -19,6 +20,14 @@ public class AlbumModal {
     String imgURL;
 
     protected AlbumModal() {
+    }
+
+    public List<Song> getSongsInAlbum() {
+        return songsInAlbum;
+    }
+
+    public void setSongsInAlbum(List<Song> songsInAlbum) {
+        this.songsInAlbum = songsInAlbum;
     }
 
     public AlbumModal(String title, String artist, int songCount, int length, String imgURL) {
